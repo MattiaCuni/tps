@@ -3,14 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inserimento Dati</title>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 5px;
-        }
-    </style>
+    <title>Inserisci Dati</title>
 </head>
 <body>
 
@@ -24,20 +17,8 @@
         <button onclick="aggiungiDati()">Aggiungi Dati</button>
     </div>
 
-    <h2>Elenco Dati:</h2>
-    <table id="tabella">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Cognome</th>
-                <th>Età</th>
-                <th>Colore Occhi</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <h2>Dati Inseriti:</h2>
+    <pre id="risultato"></pre>
 
     <script>
         let collection = [];
@@ -49,13 +30,7 @@
             const colore_occhi = document.getElementById('colore_occhi').value;
 
             if (nome && cognome && eta && colore_occhi) {
-                collection.push({
-                    id: collection.length + 1,
-                    nome: nome,
-                    cognome: cognome,
-                    eta: eta,
-                    colore_occhi: colore_occhi
-                });
+                collection.push("ID: " + (collection.length + 1) + ", Nome: " + nome + ", Cognome: " + cognome + ", Età: " + eta + ", Colore Occhi: " + colore_occhi);
             }
 
             document.getElementById('nome').value = '';
@@ -63,27 +38,15 @@
             document.getElementById('eta').value = '';
             document.getElementById('colore_occhi').value = '';
 
-            stampaTabella();
+            mostraDati();
         }
 
-        function stampaTabella() {
-            const tbody = document.getElementById('tabella').getElementsByTagName('tbody')[0];
-            tbody.innerHTML = '';
-
-            collection.forEach(item => {
-                const row = tbody.insertRow();
-                const cellId = row.insertCell(0);
-                const cellNome = row.insertCell(1);
-                const cellCognome = row.insertCell(2);
-                const cellEta = row.insertCell(3);
-                const cellColoreOcchi = row.insertCell(4);
-
-                cellId.textContent = item.id;
-                cellNome.textContent = item.nome;
-                cellCognome.textContent = item.cognome;
-                cellEta.textContent = item.eta;
-                cellColoreOcchi.textContent = item.colore_occhi;
-            });
+        function mostraDati() {
+            let risultatoStringa = '';
+            for (let i = 0; i < collection.length; i++) {
+                risultatoStringa += collection[i] + '\n';
+            }
+            document.getElementById('risultato').textContent = risultatoStringa;
         }
     </script>
 
