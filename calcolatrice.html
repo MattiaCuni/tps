@@ -58,12 +58,6 @@
       <button onclick="clearDisplay()">C</button>
       <button onclick="append('/')">/</button>
       <button onclick="calculate()">=</button>
-      <button onclick="append('^')">x^y</button>
-      <button onclick="append('sqrt(')">√</button>
-      <button onclick="append('%')">%</button>
-      <button onclick="append('sin(')">sin</button>
-      <button onclick="append('cos(')">cos</button>
-      <button onclick="append('tan(')">tan</button>
     </div>
   </div>
 
@@ -77,10 +71,10 @@
 
     function calculate() {
       try {
-        input = input.replace(/x\^y/g, '**').replace(/sqrt\((.*?)\)/g, 'Math.sqrt($1)').replace(/sin\((.*?)\)/g, 'Math.sin($1)').replace(/cos\((.*?)\)/g, 'Math.cos($1)').replace(/tan\((.*?)\)/g, 'Math.tan($1)').replace(/%/g, '/100');
+        input = input.replace('x', '*').replace('%', '/100');
         input = eval(input);
         document.getElementById('display').value = input;
-      } catch {
+      } catch (error) {
         document.getElementById('display').value = 'Errore';
       }
     }
