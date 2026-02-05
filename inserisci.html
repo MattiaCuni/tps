@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inserimento dati</title>
+</head>
+<body>
+
+<h2>Inserisci dati personali</h2>
+
+Nome: <input type="text" id="nome"><br><br>
+Cognome: <input type="text" id="cognome"><br><br>
+Età: <input type="number" id="eta"><br><br>
+
+<button onclick="salva()">Salva</button>
+
+<script>
+function salva() {
+    let nome = document.getElementById("nome").value;
+    let cognome = document.getElementById("cognome").value;
+    let eta = document.getElementById("eta").value;
+
+    let persona = {
+        nome: nome,
+        cognome: cognome,
+        eta: eta
+    };
+
+    let elenco = localStorage.getItem("elenco");
+
+    if (elenco == null) {
+        elenco = [];
+    } else {
+        elenco = JSON.parse(elenco);
+    }
+
+    elenco.push(persona);
+
+    localStorage.setItem("elenco", JSON.stringify(elenco));
+
+    alert("Dati salvati!");
+}
+</script>
+
+</body>
+</html>

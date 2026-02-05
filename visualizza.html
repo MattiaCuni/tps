@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visualizza dati</title>
+</head>
+<body>
+
+<h2>Elenco persone</h2>
+
+<table border="1">
+    <tr>
+        <th>Nome</th>
+        <th>Cognome</th>
+        <th>Età</th>
+    </tr>
+    <tbody id="tabella"></tbody>
+</table>
+
+<script>
+let elenco = localStorage.getItem("elenco");
+
+if (elenco != null) {
+    elenco = JSON.parse(elenco);
+
+    let tabella = document.getElementById("tabella");
+
+    for (let i = 0; i < elenco.length; i++) {
+        let riga = "<tr>";
+        riga += "<td>" + elenco[i].nome + "</td>";
+        riga += "<td>" + elenco[i].cognome + "</td>";
+        riga += "<td>" + elenco[i].eta + "</td>";
+        riga += "</tr>";
+
+        tabella.innerHTML += riga;
+    }
+}
+</script>
+
+</body>
+</html>
